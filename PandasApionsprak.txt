@@ -1,0 +1,46 @@
+Pandas provides some methods that are not directly available in PySpark DataFrames. Here are a few examples:
+
+1. **GroupBy and Aggregation:**
+   Pandas supports more versatile options for groupby and aggregation with functions like `groupby`, `agg`, and `transform`. While PySpark has similar functionalities, Pandas often offers more flexibility and ease of use in this regard.
+
+   ```python
+   # Pandas example
+   df_pandas.groupby('Category')['Value'].sum()
+
+   # PySpark equivalent
+   df_pyspark.groupBy('Category').agg({'Value': 'sum'})
+   ```
+
+2. **Wide Range of Statistical Functions:**
+   Pandas provides an extensive set of statistical functions through the `describe` method, which summarizes various statistics of a DataFrame. PySpark has basic statistical functions, but Pandas offers a richer set.
+
+   ```python
+   # Pandas example
+   df_pandas.describe()
+
+   # PySpark equivalent
+   df_pyspark.describe()
+   ```
+
+3. **Data Cleaning and Transformation:**
+   Pandas has convenient methods for data cleaning and transformation, such as `fillna`, `dropna`, and `map`. While PySpark offers similar functionalities, Pandas often has a more extensive set of options.
+
+   ```python
+   # Pandas example
+   df_pandas['Column'].fillna(value)
+
+   # PySpark equivalent
+   df_pyspark.na.fill(value, subset=['Column'])
+   ```
+
+4. **Pivot Tables:**
+   Pandas supports creating pivot tables easily using the `pivot_table` function, whereas in PySpark, achieving the same result might require a more complex set of operations.
+
+   ```python
+   # Pandas example
+   pd.pivot_table(df_pandas, values='Value', index='Category', columns='Month', aggfunc='sum')
+
+   # PySpark equivalent may involve multiple operations
+   ```
+
+Remember that while Pandas is designed for in-memory data processing on a single machine, PySpark is designed for distributed processing across a cluster. Therefore, the choice between Pandas and PySpark depends on the specific requirements and scale of your data processing tasks.
